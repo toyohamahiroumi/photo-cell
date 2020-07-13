@@ -10,22 +10,17 @@
     {% csrf_token %}
     <div class="form-group">
       <div class="custom-file">
-        <input
-          type="file"
-          class="custom-file-input"
-          name="picture"
-          id="picture"
-        />
-        <label class="custom-file-label" for="customFile">Choose file</label>
+        <input type="file" class="custom-file-input" name="photo" id="photo" />
+        <label class="custom-file-label" for="customFile">写真を選択</label>
       </div>
-      {% if form.picture.errors %}
+      {% if form.image.errors %}
       <div class="alert alert-danger">
-        {{ form.picture.errors }}
+        {{ form.image.errors }}
       </div>
-      {% endif %}
+      {% endif %} {{form.image}}
     </div>
     <div class="form-group">
-      <label for="text">メッセージ</label>
+      <label for="text">コメント</label>
       <textarea
         class="form-control"
         name="text"
@@ -33,12 +28,22 @@
         rows="10"
         id="id_text"
       ></textarea>
-      {% if form.text.errors %}
+      {% if form.comment.errors %}
       <div class="alert alert-danger">
-        {{ form.text.errors }}
+        {{ form.comment.errors }}
       </div>
       {% endif %}
     </div>
+
+    <div class="form-group">
+      <label for="tags">タグ</label>
+      {{form.tags}} {% if form.tags.errors %}
+      <div class="alert alert-danger">
+        {{ form.tags.errors }}
+      </div>
+      {% endif %}
+    </div>
+
     <div class="form-group">
       <input type="submit" value="投稿" class="btn btn-primary form-control" />
     </div>

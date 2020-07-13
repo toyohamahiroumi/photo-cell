@@ -80,15 +80,15 @@ class IconEdit(UpdateView):
 
 class PhotoCreate(CreateView):
     template_name = 'app/photos_form.html'
-    model = Photo
+    # model = Photo
     form_class = PhotoForm
     # fields = ['image', 'comment', 'tags', ]
-    success_url = reverse_lazy('app:photos_list')
+    success_url = reverse_lazy('app:index')
 
     def form_valid(self, form):
         # バリデーションを通った時
         messages.success(self.request, "保存しました")
-        form.instance.author_id = self.request.user.id
+        form.instance.user_id = self.request.user.id
         return super(PhotoCreate, self).form_valid(form)
 
     def form_invalid(self, form):
@@ -99,6 +99,6 @@ class PhotoCreate(CreateView):
 
 class PhotoList(ListView):
     model = Photo
-    template_name = 'app:photos_list.html'
+    template_name = 'app/photos_list.html'
     paginate_by = 100
-    queryset = Photo.objects.order_by('created_at')
+    queryset = Photo.objects..order_by('created_at')

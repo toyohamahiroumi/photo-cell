@@ -3,19 +3,19 @@
 <!-- timeline section-->
 <section>
     <!-- もし投稿があれば一覧を表示する -->
-    {% if post_list %}
-    {% for post in post_list %}
+    {% if photo_list %}
+    {% for photo in photo_list %}
     <div class="row p-10 text-lefti">
         <div class="col-10 offset-1">
             <div class="card">
                 <ul class="list-group list-group-flush">
-                    <li class="list-group-item"><a href="{% url 'app:user_detail' post.author%}" class="text-dark"><img
-                                src="{{ post.author.icon.url }}" class="timeline-icon" style="height:3%">
-                            {{post.author.username }}
+                    <li class="list-group-item"><a href="{% url 'app:user_detail' photo.user%}" class="text-dark"><img
+                                src="{{ photo.user.icon.url }}" class="timeline-icon" style="height:3%">
+                            {{photo.user.username }}
                         </a>
                     </li>
                 </ul>
-                <img src="{{post.picture.url}}" class="card-img" />
+                <img src="{{photo.image.url}}" class="card-img" />
                 <div class="card-body">
                     <div class="like_list">
                         <!-- ここにお気に入り機能を実装していく -->
@@ -25,7 +25,7 @@
                     </div>
                     <div class="pt-2">
                         <small>
-                            投稿時間{{ post.created_at|date:'Y-m-d H:i' }}
+                            投稿時間{{ photo.created_at|date:'Y-m-d H:i' }}
                         </small>
                     </div>
                 </div>
