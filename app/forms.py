@@ -14,4 +14,4 @@ class SignUpForm(UserCreationForm):
 class PhotoForm(ModelForm):
     class Meta:
         model = Photo
-        fields = {'image', 'comment', 'tags', 'user'}
+        fields = {'image', 'comment', 'tags', }

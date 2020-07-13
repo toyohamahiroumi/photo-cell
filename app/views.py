@@ -1,10 +1,10 @@
 from django.shortcuts import render, redirect
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import authenticate, login, logout
 from .forms import SignUpForm, PhotoForm
 from .models import Photo
-from django.views.generic.edit import CreateView, UpdateView
-from django.views.generic.detail import DetailView
-
+# from django.views.generic.edit import CreateView, UpdateView
+# from django.views.generic.detail import DetailView,
+from django.views.generic import ListView, CreateView, UpdateView, DetailView
 from django.contrib import messages
 from django.urls import reverse_lazy, reverse
 from django.views import generic
@@ -81,19 +81,24 @@ class IconEdit(UpdateView):
 class PhotoCreate(CreateView):
     template_name = 'app/photos_form.html'
     model = Photo
-    # form_class = PhotoForm
-    fields = ['image', 'comment', 'tags', ]
-    success_url = reverse_lazy('app:photo_form')
-
-    def user_name(self, request):
-        user = self.request.user
+    form_class = PhotoForm
+    # fields = ['image', 'comment', 'tags', ]
+    success_url = reverse_lazy('app:photos_list')
 
     def form_valid(self, form):
-        ''' バリデーションを通った時 '''
+        # バリデーションを通った時
         messages.success(self.request, "保存しました")
-        return super().form_valid(form)
+        form.instance.author_id = self.request.user.id
+        return super(PhotoCreate, self).form_valid(form)
 
     def form_invalid(self, form):
-        ''' バリデーションに失敗した時 '''
+        # バリデーションに失敗した時
         messages.warning(self.request, "保存できませんでした")
         return super().form_invalid(form)
+
+
+class PhotoList(ListView):
+    model = Photo
+    template_name = 'app:photos_list.html'
+    paginate_by = 100
+    queryset = Photo.objects.order_by('created_at')
