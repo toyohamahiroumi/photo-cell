@@ -1,53 +1,5 @@
-{% extends "app/base.html" %}
-{% block contents %}
-<!-- timeline section-->
-<section>
-    <!-- もし投稿があれば一覧を表示する -->
-    {% if photo_list %}
-    {% for photo in photo_list %}
-    <div class="row p-10 text-lefti">
-        <div class="col-10 offset-1">
-            <div class="card">
-                <ul class="list-group list-group-flush">
-                    <li class="list-group-item"><a href="{% url 'app:user_detail' photo.user%}" class="text-dark"><img
-                                src="{{ photo.user.icon.url }}" class="timeline-icon" style="height:3%">
-                            {{photo.user.username }}
-                        </a>
-                    </li>
-                </ul>
-                <img src="{{photo.image.url}}" class="card-img" />
-                <div class="card-body">
-                    <div class="like_list">
-                        <!-- ここにお気に入り機能を実装していく -->
-                    </div>
-                     <div class="card-hedder">
-                        コメントする
-                    </div>
-                    <div class="pt-2">
-                        <small>
-                            投稿時間{{ photo.created_at|date:'Y-m-d H:i' }}
-                        </small>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    {% endfor %}
-    {% else %}
-    <div class="row p-5">
-        <div class="col-6 offset-3 text-center">
-            <div class="jumbotron jumbotron-fluid">
-                <div class="container">
-                    <p class="lead"><a href="{% url app:photos_form' %}">投稿</a>して他のユーザーに見つけてもらおう</p>
-                </div>
-            </div>
-        </div>
-        {% endif %}
-</section>
-
-
-<!-- ここにJSスクリプトを書いていく -->
-<script>
-
-</script>
-{% endblock contents %}
+<ul>
+  {% for item in object_list %}
+  <li>{{ item.image }}</li>
+  {% endfor %}
+</ul>

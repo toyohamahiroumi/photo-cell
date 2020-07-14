@@ -4,16 +4,18 @@ from .forms import SignUpForm, PhotoForm
 from .models import Photo
 # from django.views.generic.edit import CreateView, UpdateView
 # from django.views.generic.detail import DetailView,
-from django.views.generic import ListView, CreateView, UpdateView, DetailView
+from django.views.generic import ListView, CreateView, UpdateView, DetailView, TemplateView
 from django.contrib import messages
 from django.urls import reverse_lazy, reverse
 from django.views import generic
 from users.models import User
 
 
-def index(request):
+# def index(request):
+#     model = Post
+#     template_name='posts/index.html'
 
-    return render(request, 'app/index.html')
+#     return render(request, 'app/index.html')
 
 
 # def signup(request):
@@ -97,8 +99,9 @@ class PhotoCreate(CreateView):
         return super().form_invalid(form)
 
 
-class PhotoList(ListView):
+class Index(ListView):
     model = Photo
-    template_name = 'app/photos_list.html'
+    context_object_name = 'post_list'
+    template_name = 'app/index.html'
     paginate_by = 100
-    queryset = Photo.objects..order_by('created_at')
+    queryset = Photo.objects.order_by('created_at')

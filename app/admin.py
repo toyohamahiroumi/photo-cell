@@ -3,7 +3,7 @@ from .models import Photo
 
 
 class PhotoAdmin(admin.ModelAdmin):
-    list_display = ('comment', 'image', 'tags', 'user')
+    list_display = ('comment', 'image', 'tags', 'user', 'created_at')
     # list_display_links = ('id', 'title')
 
 

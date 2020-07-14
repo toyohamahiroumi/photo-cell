@@ -57,7 +57,8 @@
           <li class="nav-item">
             <a class="nav-link" href="{% url 'app:login' %}">ログイン</a>
           </li>
-          {% else %}s
+
+          {% else %}
           <!-- ログインしていたらこっち -->
           <li class="nav-item">
             <a class="nav-link" href="{% url 'app:index' %}">ディスカバリー</a>
@@ -70,6 +71,7 @@
           <li class="nav-item">
             <a class="nav-link" href="{% url 'app:logout' %}">ログアウト</a>
           </li>
+
           {% endif %}
           <!-- 追加ここまで -->
         </ul>
