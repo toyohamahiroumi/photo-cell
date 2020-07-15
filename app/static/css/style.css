@@ -1,0 +1,13 @@
+.card {
+  width: 250px;
+  height: 250px;
+  object-fit: cover; /* この一行を追加するだけ！ */
+}
+img.tes {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+}
+.right {
+  text-align: right;
+}

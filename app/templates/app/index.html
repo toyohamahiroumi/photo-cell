@@ -6,17 +6,11 @@
     <!-- もし投稿があれば一覧を表示する -->
     {% if post_list %}
     {% for post in post_list %}
-    <div class="row p-10 text-lefti">
+    <div class="row p-10 text-left">
         <div class="col-10 offset-1">
             <div class="card">
-                <ul class="list-group list-group-flush">
-                    <li class="list-group-item"><a href="(% url 'app:userdetail' post.username %)" class="text-dark"><img
-                                src="{{ post.user.icon.url }}" class="timeline-icon" style="height:3%">
-                            {{post.user.username }}
-                        </a>
-                    </li>
-                </ul>
-                <img src="{{post.picture.url}}" class="card-img" />
+                
+                <img src="{{post.image.url}}" class="card-img" />
                 <div class="card-body">
                     <div class="like_list">
                         <!-- ここにお気に入り機能を実装していく -->
@@ -24,6 +18,13 @@
                      <div class="card-hedder">
                         コメントする
                     </div>
+                    
+                    <!-- <div class=right><a href="(% url 'app:userdetail' post.username %)" class="text-dark">
+                        <img src="{{ post.user.icon.url }}" class='test' >
+                            {{post.user.username }}
+                        </a>
+                    </div>
+                 -->
                     <div class="pt-2">
                         <small>
                             投稿時間{{ post.created_at|date:'Y-m-d H:i' }}

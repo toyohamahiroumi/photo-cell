@@ -104,4 +104,5 @@ class Index(ListView):
     context_object_name = 'post_list'
     template_name = 'app/index.html'
     paginate_by = 100
-    queryset = Photo.objects.order_by('created_at')
+    user = User.objects.
+    queryset = Photo.objects.distinct('user').order_by('created_at')
