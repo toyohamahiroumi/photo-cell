@@ -11,12 +11,27 @@ from django.views import generic
 from users.models import User
 
 
-# def index(request):
-#     model = Post
-#     template_name='posts/index.html'
+class SignUpView(CreateView):
+    form_class = SignUpForm
+    template_name = 'app/signup.html'
 
-#     return render(request, 'app/index.html')
+    def get_success_url(self):
+        form = self.get_form()
 
+        user = User.objects.get(username=form.data.get('username'))
+
+        login(self.request, user)
+        return reverse('app:userdetail',
+                       kwargs={'username': user.username})
+
+
+class Index(ListView):
+    model = User
+    context_object_name = 'users_list'
+    template_name = 'app/index.html'
+    paginate_by = 100
+    # user = User.objects
+    queryset = User.objects.order_by('date_posted')
 
 # def signup(request):
 #     if request.method == 'POST':
@@ -33,19 +48,6 @@ from users.models import User
 #         form = CustomUserCreationForm()
 #     return render(request, 'app/signup.html', {'form': form})
 
-class SignUpView(CreateView):
-    form_class = SignUpForm
-    template_name = 'app/signup.html'
-
-    def get_success_url(self):
-        form = self.get_form()
-
-        user = User.objects.get(username=form.data.get('username'))
-
-        login(self.request, user)
-        return reverse('app:userdetail',
-                       kwargs={'username': user.username})
-
 
 # アカウント詳細画面設定
 class UserDetailView(DetailView):
@@ -61,9 +63,8 @@ class UserDetailView(DetailView):
         context['login_user'] = self.request.user
         return context
 
+
 # アイコン変更
-
-
 class IconEdit(UpdateView):
     model = User
     template_name = 'app/icon_edit.html'
@@ -99,10 +100,9 @@ class PhotoCreate(CreateView):
         return super().form_invalid(form)
 
 
-class Index(ListView):
+class UserPost(ListView):
     model = Photo
-    context_object_name = 'post_list'
-    template_name = 'app/index.html'
-    paginate_by = 100
-    user = User.objects.
-    queryset = Photo.objects.distinct('user').order_by('created_at')
+    context_object_name = 'photos_list'
+    template_name = 'app/user_post.html'
+    # プロフィール画像がクリックされたらそのユーザーの写真一覧が表示。
+    queryset = Photo.objects.all().order_by('created_at')

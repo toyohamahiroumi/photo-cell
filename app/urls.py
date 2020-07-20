@@ -16,5 +16,6 @@ urlpatterns = [
          name='userdetail'),
     path('icon/edit/', views.IconEdit.as_view(), name='icon_edit'),
     # path('photos_list/', PhotoList.as_view(), name='photos_list'),
+    path('post/<username>/', views.UserPost.as_view(), name='user_post')
 
 ]

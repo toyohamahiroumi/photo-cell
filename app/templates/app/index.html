@@ -3,16 +3,20 @@
 {% block contents %}
 <!-- timeline section-->
 <section>
-    <!-- もし投稿があれば一覧を表示する -->
-    {% if post_list %}
-    {% for post in post_list %}
+    <!-- もし投稿があればユーザ一覧を表示する -->
+    {% if users_list %}
+    {% for user in users_list %}
     <div class="row p-10 text-left">
-        <div class="col-10 offset-1">
+        <div class="col-5 offset-1">
             <div class="card">
-                
-                <img src="{{post.image.url}}" class="card-img" />
+                <!-- プロフ画像をクリックするとそのユーザの写真一覧へ -->
+                <a href="{% url 'app:user_post' user.username %}">
+                <img src="{{user.icon.url}}" class="card-img " />
+                </a>
+
                 <div class="card-body">
                     <div class="like_list">
+                        
                         <!-- ここにお気に入り機能を実装していく -->
                     </div>
                      <div class="card-hedder">
@@ -23,13 +27,13 @@
                         <img src="{{ post.user.icon.url }}" class='test' >
                             {{post.user.username }}
                         </a>
-                    </div>
-                 -->
-                    <div class="pt-2">
+                    </div> -->
+                
+                    <!-- <div class="pt-2">
                         <small>
                             投稿時間{{ post.created_at|date:'Y-m-d H:i' }}
                         </small>
-                    </div>
+                    </div> -->
                 </div>
             </div>
         </div>

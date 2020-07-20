@@ -1,0 +1,10 @@
+{% extends 'app/base.html' %} {% block contents %} {% for photo in photos_list%}
+
+<div class="container auto">
+  <div class="row">
+    <div class="col-md-2">
+      <img src="{{photo.image.url}}" class="card-img" />
+    </div>
+  </div>
+</div>
+{% endfor %} {% endblock %}

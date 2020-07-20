@@ -47,7 +47,7 @@ class User(AbstractBaseUser, PermissionsMixin):
     is_active = models.BooleanField('is_active', default=True)
     date_joined = models.DateTimeField('date_joined', default=timezone.now)
     date_posted = models.DateTimeField('date_posted', default=timezone.now)
-    icon = models.ImageField(upload_to='icon/', blank=True, null=True)
+    icon = models.ImageField(upload_to='icon/', blank=True, null=True, default=)
 
     objects = UserManager()
 
